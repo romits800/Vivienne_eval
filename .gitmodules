@@ -1,3 +1,3 @@
 [submodule "ctwasm"]
 	path = ctwasm
-	url = git@github.com:romits800/ct-wasm-spec.git
+	url = git@github.com:romits800/wasm_interpreter.git
