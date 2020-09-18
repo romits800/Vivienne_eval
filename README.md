@@ -1,2 +1,2 @@
 # symb_wasm
-Symbolic Execution for WebAssembly
+Relations Symbolic Execution for WebAssembly (Under development)
