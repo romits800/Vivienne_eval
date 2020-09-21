@@ -56,12 +56,14 @@ The security policies are based on this [repo](https://github.com/imdea-software
 | const unsigned char \*in |       P        | S             | 
 
 
-#### Function SHA256_Transform
+#### Function SHA256\_Transform
 
 | argument                      |  Pointer       | Memory        | 
 | :---------------------------: | :-------------:|:-------------:|
-| uint32_t \*state              |    P           | S             | 
+| uint32\_t \*state             |    P           | S             | 
 | const unsigned char block[64] |    P           | S             | 
+|*uint32\_t w[64]*              |    P           | S             | 
+|*uint32\_t s[8]*               |    P           | S             | 
 
 
 #### Function crypto\_hash\_sha512
