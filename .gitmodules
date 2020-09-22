@@ -1,3 +1,5 @@
-[submodule "ctwasm"]
-	path = ctwasm
+[submodule "relsymb"]
+	path = relsymb
 	url = git@github.com:romits800/wasm_interpreter.git
+
+
