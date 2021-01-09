@@ -16,6 +16,6 @@ int crypto_hash_sha256_wrapper(unsigned char *out, const unsigned char *in)
 void SHA256_Transform_wrapper(uint32_t* state, const unsigned char block[64], 
         uint32_t w[64], uint32_t s[8])
 {
-  SHA256_Transform(state,block, w, s);
+  SHA256_Transform(state, block, w, s);
   return;
 }
