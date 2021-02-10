@@ -1,2 +1,4 @@
 *~
 eval/manticore_vs_spec/manticore/mcore_*
+*.o
+out*
