@@ -49393,7 +49393,11 @@
     local.get 3
     i32.const 0
     i32.load offset=37564
-    call_indirect (type 9))
+    call_indirect (type 9)
+    ;;i32.const 0
+    ;;i32.load
+    ;;drop
+)
   (func $crypto_stream_chacha20_xor_ic (type 10) (param i32 i32 i64 i32 i64 i32) (result i32)
     block  ;; label = @1
       local.get 2

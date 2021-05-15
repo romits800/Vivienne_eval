@@ -31,7 +31,7 @@
 
 (module $env
  (memory (;0;) $memory (export "memory") 2)
- (public (i32.const 0) (i32.const 39999) (i32.const 0)) ;; initialized memory
+;; (public (i32.const 0) (i32.const 39999) (i32.const 0)) ;; initialized memory
  (public (i32.const 40000) (i32.const 40063)) ;; out 40000 - 40064
  (secret (i32.const 40064) (i32.const 40163)) ;; in 40064 - 40164 (100 bytes)
 )
