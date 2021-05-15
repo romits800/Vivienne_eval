@@ -31,7 +31,7 @@
 
 (module $env
  (memory (;0;) $memory (export "memory") 2)
- (public (i32.const 0) (i32.const 39999) (i32.const 0)) ;; mainly initialized memory
+;; (public (i32.const 0) (i32.const 39999) (i32.const 0)) ;; mainly initialized memory
  (public (i32.const 40000) (i32.const 40031)) ;; ad 40000 - 40031
  (public (i32.const 40032) (i32.const 40039)) ;; npub 40032 - 40039
  (public (i32.const 40040) (i32.const 41063)) ;; c 40040 - 40040 + mlen
