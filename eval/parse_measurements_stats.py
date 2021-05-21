@@ -7,6 +7,8 @@ import pickle
 
 files = filter(lambda i: not i.endswith(".tex") and not i.endswith(".pickle") and (i.startswith ("out_unroll_debug_stats") or i.startswith("out_inv_debug_stats")), os.listdir("."))
 
+loc = dict()
+
 def edit_name(bench):
     # remove .wast
     bench = bench[:-5] 
@@ -54,23 +56,26 @@ for input_file in files:
         else:
             return j.endswith(".wast") and ("tweetnacl" in j or j in ["script_salsa20_pass.wast", "script_sha256.wast", "script_tea_pass.wast"] or ((not j.startswith("script_")) and (not j.startswith("imports_"))))
 
+    suites =  ["CT-wasm", "TweetNaCl", "WHACL*", "BearSSL -O0", "BearSSL -O3", "Libsodium -O0", "Libsodium -O3"]
+
+
     def find_suite(i):
         if "Hacl" in i:
             return "WHACL*"
         elif "tweetnacl" in i:
-            return "TweetNaCl - Wasm"
+            return "TweetNaCl"
         elif "_O" not in i and any([j in i for j in ["script_salsa20", "script_sha256", "script_tea"]]):
             return "CT-wasm"
         elif "aes" in i or "des" in i:
             if "_O0" in i:
-                return "bearssl -O0"
+                return "BearSSL -O0"
             else:
-                return "bearssl -O3"
+                return "BearSSL -O3"
         elif "_O" in i:
             if "_O0" in i:
-                return "libsodium -O0"
+                return "Libsodium -O0"
             else:
-                return "libsodium -O3"
+                return "Libsodium -O3"
         else:
             return "handmade"
 
@@ -112,13 +117,23 @@ for input_file in files:
              else:
                 d[suite] = {bench: dict()}
                 
+             if loc.has_key(suite):
+                if not loc[suite].has_key(bench):
+                    loc[suite][bench] = dict()
+             else:
+                loc[suite] = {bench: dict()}
+ 
          elif i.startswith("-- Symbolically executing function"):
              func = i.split()[4][1:-4]  
              cdict = {val:{"num":0, "time":[]} for val in ["vct", "sat", "cond", "vsame", "find_vars"]}
-             init_state = {"ex_time": -1, "bugs": 0, "solver_error": False, "assert_failure": False, "all_solver_queries": 0, "solver_queries" : [], "checking" : cdict}
+             init_state = {"ex_time": -1, "bugs": 0, "solver_error": False, "assert_failure": False, 
+                             "all_solver_queries": 0, "solver_queries" : [], "checking" : cdict}
              func = func if not d[suite][bench].has_key(func) else func + "_2"
              d[suite][bench][func] = init_state
+             loc[suite][bench][func] = -1
      
+         elif i.startswith("Codelines:"):
+             loc[suite][bench][func] = int(i.split()[-1])
          elif i.startswith("-- Execution time:"):
              d[suite][bench][func]["ex_time"] = float(i.split()[-1][:-1])
          elif "Assertion" in i:
@@ -145,11 +160,9 @@ for input_file in files:
 
 
     with open( input_file + ".tex", "w") as f:
-        f.write( "bench" + " & " + "&".join(["function", "analysis time", "\#bugs", "total solver queries", "avg simpl. time", "solver calls", "avg num exprs", "avg solver time"]) + "\\\\\n")
-        #f.write( "bench" + " & " + "&".join(["function", "analysis time", "\#bugs", "total solver queries", "solver calls", "avg num exprs", "median num exprs", "avg solver time"]) + "\\\\\n")
-        #benchmarks = sorted(d.keys())
-        suites = sorted(d.keys())
+        f.write( "bench" + " & " + "&".join(["function", "lines of code", "analysis time", "\#bugs", "\#formulas", "avg simpl. time", "SMT solver", "avg num exprs", "avg solver time"]) + "\\\\\n")
         for suite in suites:
+            if not d.has_key(suite): continue
             f.write("\\hline\n")
             f.write("\\multicolumn{9}{c}{%s}"%suite + "\\\\\n\\hline\n")
 
@@ -201,13 +214,69 @@ for input_file in files:
 
                     simpl_time = [ t  for j in d[suite][bench][func]["checking"] for t in d[suite][bench][func]["checking"][j]["time"]]
                     if len(simpl_time) > 0:
-                        st_avg = round(sum(simpl_time)/len(simpl_time),3)
-                        st_avg = '%.3f' % st_avg
+                        avg = sum(simpl_time)/len(simpl_time)
+                        if avg >= 0.001:
+                            st_avg = round(sum(simpl_time)/len(simpl_time),3)
+                            st_avg = '%.3f' % st_avg
+                        else:
+                            st_avg = "$<10^{-3}$"
                     else:
                         st_avg = "-1"
+                    lines_of_code = str(loc[suite][bench][func])
      
-                    f.write( bench_out + " & " + "&".join([func_f, unroll_time, unroll_bugs, all_solver_queries, st_avg, solver_queries, avg_num_exprs,  solver_time]) + "\\\\\n")
+                    f.write( bench_out + " & " + "&".join([func_f, lines_of_code, unroll_time, unroll_bugs, all_solver_queries, st_avg, solver_queries, avg_num_exprs,  solver_time]) + "\\\\\n")
                     #f.write( bench_out + " & " + "&".join([func_f, unroll_time, unroll_bugs, all_solver_queries, solver_queries, avg_num_exprs, median_num_exprs, solver_time]) + "\\\\\n")
 
         f.write("\\hline\n")
+
+    dall = dict()
+
+    for suite in suites:
+        if not d.has_key(suite): continue
+        dall[suite] = dict()
+
+        bs = sorted( d[suite].keys())
+        dall[suite]["algo"] = 0
+        dall[suite]["codelines"] = 0
+        dall[suite]["are_ct"] = 0
+        dall[suite]["have_bugs"] = 0
+        dall[suite]["formulas"] = 0
+        dall[suite]["SMT"] = 0
+        for bench in bs: 
+            funcs = sorted(d[suite][bench].keys())
+            for func in funcs: 
+                dall[suite]["algo"] +=1
+                dall[suite]["codelines"] += loc[suite][bench][func]
+                dall[suite]["formulas"] += sum([ d[suite][bench][func]["checking"][j]["num"] for j in d[suite][bench][func]["checking"]])
+                dall[suite]["SMT"] += len(d[suite][bench][func]["solver_queries"])
+
+                if  not (d[suite][bench][func]["assert_failure"]     # analysis failed
+                            or d[suite][bench][func]["solver_error"] # solver error
+                            or d[suite][bench][func]["ex_time"] < 0):  # timed out
+                    if d[suite][bench][func]["bugs"] > 0:  # bugs
+                        dall[suite]["have_bugs"] += 1
+                    else:
+                        dall[suite]["are_ct"] += 1
+                
+
+    with open( input_file + "_sum.tex", "w") as f:
+        f.write("\\begin{tabular}{lrrrrrr}\n")
+        f.write("\\hline\n")
+        f.write( "&".join(map(lambda x: "\\texttt{%s}"%x, ["Benchmarks", "A", "LoC", "CT", "NCT", "$\\Phi$", "SQ"])) + "\\\\\n")
+        f.write("\\hline\n")
+        for suite in suites:
+            if not d.has_key(suite): continue
+            algorithms = str(dall[suite]["algo"])
+            locstr = str(dall[suite]["codelines"])
+            ct = str(dall[suite]["are_ct"])
+            nct = str(dall[suite]["have_bugs"])
+            fm = str(dall[suite]["formulas"])
+            smt = str(dall[suite]["SMT"])
+            
+            f.write( suite + " & " + "&".join([algorithms, locstr, ct, nct, fm, smt]) + "\\\\\n")
+                    #f.write( bench_out + " & " + "&".join([func_f, unroll_time, unroll_bugs, all_solver_queries, solver_queries, avg_num_exprs, median_num_exprs, solver_time]) + "\\\\\n")
+
+        f.write("\\hline\n")
+        f.write("\\end{tabular}\n")
+
 

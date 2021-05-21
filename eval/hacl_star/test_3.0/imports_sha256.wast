@@ -5,8 +5,8 @@
  (type (;1;) (func (param i32) (result i32)))
  (memory (;0;) $memory (export "mem") 16)
  (public (i32.const 0) (i32.const 3999) (i32.const 0))
- (secret (i32.const 40000) (i32.const 40255)) ;; input
- (secret (i32.const 40256) (i32.const 40287)) ;; output
+ (secret (i32.const 40000) (i32.const 40299)) ;; input
+ (secret (i32.const 40300) (i32.const 40331)) ;; output
 
  (global i32 (i32.const 128)) ;; from loader.js
 

@@ -5,8 +5,8 @@
  (type (;1;) (func (param i32) (result i32)))
  (memory (;0;) $memory (export "mem") 16)
  (public (i32.const 0) (i32.const 3000) (i32.const 0))
- (secret (i32.const 40000) (i32.const 40255)) ;; 256 bytes
- (secret (i32.const 40256) (i32.const 40319)) ;; out hash - 64bytes
+ (secret (i32.const 40000) (i32.const 40299)) ;; 256 bytes
+ (secret (i32.const 40300) (i32.const 40363)) ;; out hash - 64bytes
 
  (global i32 (i32.const 128)) ;; from loader.js
 
