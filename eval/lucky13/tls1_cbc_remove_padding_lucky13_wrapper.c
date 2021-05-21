@@ -41,7 +41,7 @@ int tls1_cbc_remove_padding_lucky13_wrapper(long s3_flags, unsigned long flags, 
   SSL3_RECORD rec_obj = { length, data, 0, NULL };
   SSL3_RECORD *rec = &rec_obj;
 
-  return tls1_cbc_remove_padding(s,rec,block_size,mac_size);
+  return tls1_cbc_remove_padding(s, rec, block_size, mac_size);
 }
 
 // TO VERIFY LOOP ADD IN LINE 1196  assert ($i88 == $i88.shadow);

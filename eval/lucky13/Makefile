@@ -6,7 +6,7 @@ LDFLAGS=-L$(WASI_LIBC)/lib/wasm32-wasi -lc /usr/local/lib/clang/10.0.1/lib/wasi/
 
 .PHONY: clean
 
-all: tls1_cbc_remove_padding_lucky13_wrapper_O$(opt).wast
+all: lucky13_paper_wrapper_O3.wast tls1_cbc_remove_padding_lucky13_wrapper_O$(opt).wast
 
 %.o: %.c
 	$(CC) --target=$(TARGET) $(CFLAGS) --sysroot $(WASI_LIBC) -c  $< -o $@
