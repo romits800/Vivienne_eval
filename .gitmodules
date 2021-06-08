@@ -1,5 +1,5 @@
 [submodule "relsymb"]
 	path = relsymb
-	url = git@github.com:romits800/Vivienne.git
+	url = git@github.com:romits800/wasm_interpreter.git
 
 
