@@ -1,4 +1,2 @@
-# symb_wasm
-Relational Symbolic Execution for WebAssembly (Under development)
-
-
+# Vivienne - Evaluation
+Relational Symbolic Execution for constant-time analysis in WebAssembly (Under development)
