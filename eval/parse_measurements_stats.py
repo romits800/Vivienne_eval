@@ -53,10 +53,12 @@ for input_file in files:
     def find_name (i,j):
         if "Hacl" in i:
             return j.endswith(".wast") and j.startswith("imports_");
+        elif "_sort" in i or "_select" in i:
+            return j.endswith(".wast") and j.startswith("script_");
         else:
             return j.endswith(".wast") and ("tweetnacl" in j or j in ["script_salsa20_pass.wast", "script_sha256.wast", "script_tea_pass.wast"] or ((not j.startswith("script_")) and (not j.startswith("imports_"))))
 
-    suites =  ["CT-wasm", "TweetNaCl", "WHACL*", "BearSSL -O0", "BearSSL -O3", "Libsodium -O0", "Libsodium -O3"]
+    suites =  ["CT-wasm", "TweetNaCl", "WHACL*", "BearSSL -O0", "BearSSL -O3", "Libsodium -O0", "Libsodium -O3", "Almeida -O0", "Almeida -O3", "lucky13 -O0", "lucky13 -O3"]
 
 
     def find_suite(i):
@@ -71,6 +73,16 @@ for input_file in files:
                 return "BearSSL -O0"
             else:
                 return "BearSSL -O3"
+        elif "_select" in i or "_sort" in i:
+            if "_O0" in i:
+                return "Almeida -O0"
+            else:
+                return "Almeida -O3"
+        elif "tls1" in i:
+            if "_O0" in i:
+                return "lucky13 -O0"
+            else:
+                return "lucky13 -O3"
         elif "_O" in i:
             if "_O0" in i:
                 return "Libsodium -O0"
@@ -179,7 +191,14 @@ for input_file in files:
                     elif d[suite][bench][func]["ex_time"] == -1:
                         unroll_time = "-1"
                     else:
-                        unroll_time = '%.3f' % round(d[suite][bench][func]["ex_time"],3)
+                        ex_time = d[suite][bench][func]["ex_time"] 
+                        if ex_time >= 0.0005:
+                            unroll_time = '%.3f' % round(ex_time,3)
+                        elif ex_time > 0 and ex_time < 0.0005:
+                            unroll_time = "$<10^{-3}$"
+                        else:
+                            unroll_time = "0"
+                            
                     unroll_bugs = str(d[suite][bench][func]["bugs"]) if not d[suite][bench][func]["assert_failure"] and not d[suite][bench][func]["solver_error"] else "*"
                     solver_queries = str(len (d[suite][bench][func]["solver_queries"]))
                     num_exprs = sorted([int(ne) for _,ne,_ in d[suite][bench][func]["solver_queries"]])
@@ -215,13 +234,15 @@ for input_file in files:
                     simpl_time = [ t  for j in d[suite][bench][func]["checking"] for t in d[suite][bench][func]["checking"][j]["time"]]
                     if len(simpl_time) > 0:
                         avg = sum(simpl_time)/len(simpl_time)
-                        if avg >= 0.001:
+                        if avg >= 0.0005:
                             st_avg = round(sum(simpl_time)/len(simpl_time),3)
                             st_avg = '%.3f' % st_avg
-                        else:
+                        elif avg < 0.0005 and avg > 0:
                             st_avg = "$<10^{-3}$"
+                        else:
+                            st_avg = "0"
                     else:
-                        st_avg = "-1"
+                        st_avg = "0"
                     lines_of_code = str(loc[suite][bench][func])
      
                     f.write( bench_out + " & " + "&".join([func_f, lines_of_code, unroll_time, unroll_bugs, all_solver_queries, st_avg, solver_queries, avg_num_exprs,  solver_time]) + "\\\\\n")

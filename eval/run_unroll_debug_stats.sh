@@ -23,7 +23,7 @@ pushd ./bearSSL/
 
 popd
 
-pushd ./libsodium
+pushd ./libsodium/
 
     bash -x run_unroll_debug_stats.sh  $to
     rm /tmp/wasm_*
@@ -36,4 +36,29 @@ pushd ./hacl_star/test_3.0/
     rm /tmp/wasm_*
 
 popd
+
+
+pushd ./ct-sort/
+
+    bash -x run_unroll_debug_stats.sh $to
+    rm /tmp/wasm_*
+
+popd
+
+pushd ./ct-select/
+
+    bash -x run_unroll_debug_stats.sh $to
+    rm /tmp/wasm_*
+
+popd
+
+pushd ./lucky13/
+
+    bash -x run_unroll_debug_stats.sh $to
+    rm /tmp/wasm_*
+
+popd
+
+
+
 

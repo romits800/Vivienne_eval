@@ -29,7 +29,29 @@ pushd ./bearSSL/
 
 popd
 
-pushd ./libsodium
+pushd ./libsodium/
+
+    bash -x run_inv_debug_stats.sh $to
+    rm /tmp/wasm_*
+
+popd
+
+
+# pushd ./ct-sort/
+# 
+#     bash -x run_inv_debug_stats.sh $to
+#     rm /tmp/wasm_*
+# 
+# popd
+# 
+# pushd ./ct-select/
+# 
+#     bash -x run_inv_debug_stats.sh $to
+#     rm /tmp/wasm_*
+# 
+# popd
+
+pushd ./lucky13/
 
     bash -x run_inv_debug_stats.sh $to
     rm /tmp/wasm_*
