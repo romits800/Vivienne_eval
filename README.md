@@ -1,4 +1,2 @@
 # Vivienne
-Relational Symbolic Execution for WebAssembly (Under development)
-
-
+Relational Symbolic Execution for constant-time analysis in WebAssembly (Under development)
