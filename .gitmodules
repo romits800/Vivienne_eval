@@ -1,5 +1,3 @@
-[submodule "relsymb"]
-	path = relsymb
-	url = git@github.com:romits800/Vivienne.git
-
-
+[submodule "Vivienne"]
+	path = Vivienne
+	url = https://github.com/romits800/Vivienne
