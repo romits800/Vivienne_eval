@@ -2,7 +2,7 @@
 Relational Symbolic Execution for constant-time analysis in WebAssembly. To clone this repository and Vivienne do (for git 2.7.4 - for other versions check [here](https://www.w3docs.com/snippets/git/how-to-clone-including-submodules.html)):
 
 ```bash
-git clone --recursive  git@github.com:romits800/Vivienne_eval.git
+git clone --recursive  <repo>
 ```
 
 # Symbolic execution tool
