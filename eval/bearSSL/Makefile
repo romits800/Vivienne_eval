@@ -1,5 +1,3 @@
-
-BEARSSL_PATH=/home/romi/didaktoriko/repo/crypto_libs/bearSSL/
 TARGET=wasm32-wasi
 CC=clang
 opt=3

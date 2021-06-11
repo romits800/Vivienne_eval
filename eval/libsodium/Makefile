@@ -1,5 +1,4 @@
 
-LIBSODIUM_PATH=/home/romi/didaktoriko/repo/crypto_libs/libsodium-stable/libsodium-wasm32-wasi/
 TARGET=wasm32-wasi
 CC=clang
 opt=0
