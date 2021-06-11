@@ -9,10 +9,10 @@ git clone --recursive  git@github.com:romits800/Vivienne_eval.git
 The symbolic execution tool is under subdirectory "Vivienne". To compile Vivienne, you need to enter the "Vivienne" directory and compile the code. 
 
 ```bash 
-cd Vivienne
+cd Vivienne/interpreter
 make
 ```
-For information about the prerequisites and how to run Vivienne look at Vivienne/README.md
+For information about the prerequisites and how to run Vivienne look at Vivienne/intepreter/README.md
 
 # Evaluation
 The evaluation experiments scripts are in subdirectory "eval". 
