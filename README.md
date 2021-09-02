@@ -15,7 +15,7 @@ make
 For information about the prerequisites and how to run Vivienne look at Vivienne/intepreter/README.md
 
 # Evaluation
-The evaluation experiments scripts are in subdirectory "eval". 
+The evaluation experiments scripts are in subdirectory [eval](eval). 
 
 To run the experiments enter directory "eval"
 ```bash
@@ -23,3 +23,6 @@ cd eval
 bash run.sh
 ```
 The execution of this script may take some hours. The script runs the experiments five times.
+
+# Supplemental Material
+Supplemental material for work is available in subdirectory [supplemental_material](supplemental_material).
