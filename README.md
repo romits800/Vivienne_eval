@@ -25,4 +25,4 @@ bash run.sh
 The execution of this script may take some hours. The script runs the experiments five times.
 
 # Supplemental Material
-Supplemental material for work is available in subdirectory [supplemental_material](supplemental_material).
+[Supplemental material](supplemental_material/supplemental_material_vivienne_secdev2021.pdf) for the SecDev'21 paper is available in subdirectory [supplemental_material](supplemental_material).
