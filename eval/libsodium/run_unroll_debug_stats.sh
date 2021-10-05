@@ -2,11 +2,14 @@
 
 ulimit -n 10000
 
-flags="--stats"
 to=$1
 
-for i in 0 3
+for solver in "z3" "z3_bindings" "yices2" "cvc4" "boolector" "bitwuzla" 
 do
+  for i in 0 3
+  do
+
+    flags="--solver $solver --stats"
     echo "Optimization level $i"
     timeout $to ../../Vivienne/interpreter/wasm imports_aead.wast aead_O$i.wast $flags -t -i script_aead.wast
     echo $?
@@ -31,6 +34,6 @@ do
 
     timeout $to ../../Vivienne/interpreter/wasm imports_sha512.wast sha512_O$i.wast $flags -t -i script_sha512.wast
     echo $?
+  done
 done
-
 
