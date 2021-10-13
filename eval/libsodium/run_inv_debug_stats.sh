@@ -5,6 +5,7 @@ to=$1
 
 
 for solver in "z3" "z3_bindings" "yices2" "cvc4" "boolector" "bitwuzla" 
+#for solver in "yices2" "cvc4" "boolector" "bitwuzla" 
 do
   for i in 0 3
   do

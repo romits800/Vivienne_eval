@@ -2,7 +2,7 @@
 
 ulimit -n 1000000
 
-# ../../../relsymb/interpreter/wasm imports_sha256.wast \
+# ../../../Vivienne/interpreter/wasm imports_sha256.wast \
 #                                     WasmSupport.wast \
 #                                     Hacl_IntTypes_Intrinsics.wast \
 #                                     FStar.wast \
@@ -11,7 +11,7 @@ ulimit -n 1000000
 #                                     Hacl_Blake2b_32.wast  \
 #                                     Hacl_Hash.wast -t -i script_sha256.wast
 # ~ 7186
-# ../../../relsymb/interpreter/wasm imports_sha512.wast \
+# ../../../Vivienne/interpreter/wasm imports_sha512.wast \
 #                                     WasmSupport.wast \
 #                                     Hacl_IntTypes_Intrinsics.wast \
 #                                     FStar.wast \
@@ -20,7 +20,7 @@ ulimit -n 1000000
 #                                     Hacl_Blake2b_32.wast  \
 #                                     Hacl_Hash.wast -t -i script_sha512.wast
 # ~ 1990
-# ../../../relsymb/interpreter/wasm imports_chacha20.wast \
+# ../../../Vivienne/interpreter/wasm imports_chacha20.wast \
 #                                     WasmSupport.wast \
 #                                     Hacl_IntTypes_Intrinsics.wast \
 #                                     FStar.wast \
@@ -33,7 +33,7 @@ ulimit -n 1000000
 #                                     -t -i script_chacha20.wast
 # 
 # ~ 1653
-# time timeout 7h ../../../relsymb/interpreter/wasm --debug \
+# time timeout 7h ../../../Vivienne/interpreter/wasm --debug \
 #                                     imports_curve25519_51.wast \
 #                                     WasmSupport.wast \
 #                                     Hacl_IntTypes_Intrinsics.wast \
@@ -48,7 +48,7 @@ ulimit -n 1000000
 #                                     Hacl_Curve25519_51.wast \
 #                                     -t -i script_curve25519_51.wast
 
-# time timeout 24h ../../../relsymb/interpreter/wasm -l --unroll-one --debug \
+# time timeout 24h ../../../Vivienne/interpreter/wasm -l --unroll-one --debug \
 #                                     --replace-expressions  \
 #                                     imports_curve25519_51.wast \
 #                                     WasmSupport.wast \
@@ -65,7 +65,7 @@ ulimit -n 1000000
 #                                     -t -i script_106.wast
 
 
-# ../../../relsymb/interpreter/wasm imports_sha256.wast \
+# ../../../Vivienne/interpreter/wasm imports_sha256.wast \
 #                                     WasmSupport.wast \
 #                                     Hacl_IntTypes_Intrinsics.wast \
 #                                     FStar.wast \
@@ -74,7 +74,7 @@ ulimit -n 1000000
 #                                     Hacl_Blake2b_32.wast  \
 #                                     Hacl_Hash.wast -l  -t -i script_sha256.wast
 # 
-# ../../../relsymb/interpreter/wasm imports_sha512.wast \
+# ../../../Vivienne/interpreter/wasm imports_sha512.wast \
 #                                     WasmSupport.wast \
 #                                     Hacl_IntTypes_Intrinsics.wast \
 #                                     FStar.wast \
@@ -83,7 +83,7 @@ ulimit -n 1000000
 #                                     Hacl_Blake2b_32.wast  \
 #                                     Hacl_Hash.wast -l  -t -i script_sha512.wast
 # 
-# ../../../relsymb/interpreter/wasm imports_chacha20.wast \
+# ../../../Vivienne/interpreter/wasm imports_chacha20.wast \
 #                                     WasmSupport.wast \
 #                                     Hacl_IntTypes_Intrinsics.wast \
 #                                     FStar.wast \
@@ -97,7 +97,7 @@ ulimit -n 1000000
 # 
 # 
 
-timeout 1h ../../../relsymb/interpreter/wasm imports_sha256.wast \
+timeout 1h ../../../Vivienne/interpreter/wasm imports_sha256.wast \
                                     WasmSupport.wast \
                                     Hacl_IntTypes_Intrinsics.wast \
                                     FStar.wast \
@@ -106,7 +106,7 @@ timeout 1h ../../../relsymb/interpreter/wasm imports_sha256.wast \
                                     Hacl_Blake2b_32.wast  \
                                     Hacl_Hash.wast -t --debug --stats -i script_sha256.wast
 
-timeout 1h ../../../relsymb/interpreter/wasm imports_sha512.wast \
+timeout 1h ../../../Vivienne/interpreter/wasm imports_sha512.wast \
                                     WasmSupport.wast \
                                     Hacl_IntTypes_Intrinsics.wast \
                                     FStar.wast \
@@ -115,7 +115,7 @@ timeout 1h ../../../relsymb/interpreter/wasm imports_sha512.wast \
                                     Hacl_Blake2b_32.wast  \
                                     Hacl_Hash.wast -t --debug --stats -i script_sha512.wast
 
-timeout 1h ../../../relsymb/interpreter/wasm imports_chacha20.wast \
+timeout 1h ../../../Vivienne/interpreter/wasm imports_chacha20.wast \
                                     WasmSupport.wast \
                                     Hacl_IntTypes_Intrinsics.wast \
                                     FStar.wast \
@@ -131,7 +131,7 @@ timeout 1h ../../../relsymb/interpreter/wasm imports_chacha20.wast \
 
 
 # 
-# timeout 1h ../../../relsymb/interpreter/wasm imports_sha256.wast \
+# timeout 1h ../../../Vivienne/interpreter/wasm imports_sha256.wast \
 #                                     WasmSupport.wast \
 #                                     Hacl_IntTypes_Intrinsics.wast \
 #                                     FStar.wast \
@@ -140,7 +140,7 @@ timeout 1h ../../../relsymb/interpreter/wasm imports_chacha20.wast \
 #                                     Hacl_Blake2b_32.wast  \
 #                                     Hacl_Hash.wast -l --unroll-one -t -i script_sha256.wast
 # 
-# timeout 1h ../../../relsymb/interpreter/wasm imports_sha512.wast \
+# timeout 1h ../../../Vivienne/interpreter/wasm imports_sha512.wast \
 #                                     WasmSupport.wast \
 #                                     Hacl_IntTypes_Intrinsics.wast \
 #                                     FStar.wast \
@@ -149,7 +149,7 @@ timeout 1h ../../../relsymb/interpreter/wasm imports_chacha20.wast \
 #                                     Hacl_Blake2b_32.wast  \
 #                                     Hacl_Hash.wast -l --unroll-one -t -i script_sha512.wast
 # 
-# timeout 1h ../../../relsymb/interpreter/wasm imports_chacha20.wast \
+# timeout 1h ../../../Vivienne/interpreter/wasm imports_chacha20.wast \
 #                                     WasmSupport.wast \
 #                                     Hacl_IntTypes_Intrinsics.wast \
 #                                     FStar.wast \
@@ -164,7 +164,7 @@ timeout 1h ../../../relsymb/interpreter/wasm imports_chacha20.wast \
 # 
 # 
 # 
-# timeout 1h ../../../relsymb/interpreter/wasm imports_sha256.wast \
+# timeout 1h ../../../Vivienne/interpreter/wasm imports_sha256.wast \
 #                                     WasmSupport.wast \
 #                                     Hacl_IntTypes_Intrinsics.wast \
 #                                     FStar.wast \
@@ -173,7 +173,7 @@ timeout 1h ../../../relsymb/interpreter/wasm imports_chacha20.wast \
 #                                     Hacl_Blake2b_32.wast  \
 #                                     Hacl_Hash.wast -p -l --unroll-one -t -i script_sha256.wast
 # 
-# timeout 1h ../../../relsymb/interpreter/wasm imports_sha512.wast \
+# timeout 1h ../../../Vivienne/interpreter/wasm imports_sha512.wast \
 #                                     WasmSupport.wast \
 #                                     Hacl_IntTypes_Intrinsics.wast \
 #                                     FStar.wast \
@@ -182,7 +182,7 @@ timeout 1h ../../../relsymb/interpreter/wasm imports_chacha20.wast \
 #                                     Hacl_Blake2b_32.wast  \
 #                                     Hacl_Hash.wast -p -l --unroll-one -t -i script_sha512.wast
 # 
-# timeout 1h ../../../relsymb/interpreter/wasm imports_chacha20.wast \
+# timeout 1h ../../../Vivienne/interpreter/wasm imports_chacha20.wast \
 #                                     WasmSupport.wast \
 #                                     Hacl_IntTypes_Intrinsics.wast \
 #                                     FStar.wast \
@@ -194,7 +194,7 @@ timeout 1h ../../../relsymb/interpreter/wasm imports_chacha20.wast \
 #                                     Hacl_Chacha20.wast \
 #                                     -p -l --unroll-one -t -i script_chacha20.wast
 # 
-timeout 7h ../../../relsymb/interpreter/wasm \
+timeout 7h ../../../Vivienne/interpreter/wasm \
                                     imports_curve25519_51.wast \
                                     WasmSupport.wast \
                                     Hacl_IntTypes_Intrinsics.wast \
@@ -210,7 +210,7 @@ timeout 7h ../../../relsymb/interpreter/wasm \
                                     -t --debug --stats -i script_curve25519_51.wast
 
 # 
-# timeout 7h ../../../relsymb/interpreter/wasm \
+# timeout 7h ../../../Vivienne/interpreter/wasm \
 #                                     imports_curve25519_51.wast \
 #                                     WasmSupport.wast \
 #                                     Hacl_IntTypes_Intrinsics.wast \
@@ -226,7 +226,7 @@ timeout 7h ../../../relsymb/interpreter/wasm \
 #                                     -l --unroll-one -t -i script_curve25519_51.wast
 # 
 # 
-# timeout 7h ../../../relsymb/interpreter/wasm \
+# timeout 7h ../../../Vivienne/interpreter/wasm \
 #                                     imports_curve25519_51.wast \
 #                                     WasmSupport.wast \
 #                                     Hacl_IntTypes_Intrinsics.wast \
@@ -244,7 +244,7 @@ timeout 7h ../../../relsymb/interpreter/wasm \
 # 
 # 
 
-# time timeout 24h ../../../relsymb/interpreter/wasm -l --unroll-one --debug \
+# time timeout 24h ../../../Vivienne/interpreter/wasm -l --unroll-one --debug \
 #                                     imports_curve25519_51.wast \
 #                                     WasmSupport.wast \
 #                                     Hacl_IntTypes_Intrinsics.wast \
@@ -259,7 +259,7 @@ timeout 7h ../../../relsymb/interpreter/wasm \
 #                                     Hacl_Curve25519_51.wast \
 #                                     -t -i script_curve25519_51.wast
 
-# timeout 7h ../../../relsymb/interpreter/wasm -l --unroll-one  --debug \
+# timeout 7h ../../../Vivienne/interpreter/wasm -l --unroll-one  --debug \
 #                                     imports_curve25519_51.wast \
 #                                     WasmSupport.wast \
 #                                     Hacl_IntTypes_Intrinsics.wast \
@@ -274,7 +274,7 @@ timeout 7h ../../../relsymb/interpreter/wasm \
 #                                     Hacl_Curve25519_51.wast \
 #                                     -t -i script_curve25519_51.wast
 # 
-# timeout 7h ../../../relsymb/interpreter/wasm   \
+# timeout 7h ../../../Vivienne/interpreter/wasm   \
 #                                     imports_curve25519_51.wast \
 #                                     WasmSupport.wast \
 #                                     Hacl_IntTypes_Intrinsics.wast \

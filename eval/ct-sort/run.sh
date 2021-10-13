@@ -4,6 +4,6 @@ for implementation in script_naive_select.wast script_select_v1.wast script_sele
 do
     for opt in {0..3} 
     do
-       ../../relsymb/interpreter/wasm imports_select.wast lib_O${opt}.wast -S -i $implementation 
+       ../../Vivienne/interpreter/wasm imports_select.wast lib_O${opt}.wast -S -i $implementation 
     done
 done
